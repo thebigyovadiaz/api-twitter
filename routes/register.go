@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"encoding/json"
 	"net/http"
 
@@ -45,5 +46,6 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("User Created!")
 	w.WriteHeader(http.StatusCreated)
 }
