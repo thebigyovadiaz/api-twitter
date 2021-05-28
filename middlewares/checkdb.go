@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"net/http"
+
 	"github.com/thebigyovadiaz/api-twitter/db"
 )
 
