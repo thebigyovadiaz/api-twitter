@@ -29,8 +29,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, encontrado, _ := db.CheckUserExist(t.Email)
-	if encontrado == true {
+	_, searched, _ := db.CheckUserExist(t.Email)
+	if searched {
 		http.Error(w, "Email user exist, used other email", http.StatusBadRequest)
 		return
 	}
@@ -41,7 +41,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if status == false {
+	if !status {
 		http.Error(w, "Problem to insert in DB"+err.Error(), http.StatusBadRequest)
 		return
 	}

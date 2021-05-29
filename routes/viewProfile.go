@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"encoding/json"
 	"net/http"
 
@@ -23,5 +24,7 @@ func ViewProfile(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusAccepted)
+
+	log.Printf("Profile: %v\n", profile)
 	json.NewEncoder(w).Encode(profile)
 }
