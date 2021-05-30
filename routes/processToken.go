@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"errors"
 	"strings"
 
@@ -39,10 +40,12 @@ func ProcessToken(token string) (*models.Claim, bool, string, error) {
 		return claims, false, string(""), errors.New("invalid token")
 	}
 
-	_, searched, _ := db.CheckUserExist(claims.Email)
+	user, searched, _ := db.CheckUserExist(claims.Email)
 	if searched {
-		Email = claims.Email
-		UserID = claims.ID.Hex()
+		Email = user.Email
+		UserID = user.ID.Hex()
 	}
+
 	return claims, searched, UserID, nil
 }
+
